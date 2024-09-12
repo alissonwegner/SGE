@@ -14,14 +14,13 @@ class BrandListView(ListView):
     #paginate_by = 10
     #permission_required = 'brands.view_brand'
 
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     name = self.request.GET.get('name')
-
-    #     if name:
-    #         queryset = queryset.filter(name__icontains=name)
-
-    #     return queryset
+    #colocar filtro no site
+    def get_queryset(self):
+     queryset = super().get_queryset()
+     name = self.request.GET.get('name')
+     if name:
+         queryset = queryset.filter(name__icontains=name)
+     return queryset
 
 
 # class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
