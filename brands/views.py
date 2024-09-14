@@ -1,8 +1,8 @@
 #from rest_framework import generics
 #from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-#from django.urls import reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from . import models
+from . import models, forms
 #, forms, serializers
 
 
@@ -23,12 +23,14 @@ class BrandListView(ListView):
      return queryset
 
 
-# class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-#     model = models.Brand
-#     template_name = 'brand_create.html'
-#     form_class = forms.BrandForm
-#     success_url = reverse_lazy('brand_list')
-#     permission_required = 'brands.add_brand'
+#class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class BrandCreateView(CreateView):
+
+    model = models.Brand
+    template_name = 'brand_create.html'
+    form_class = forms.BrandForm
+    success_url = reverse_lazy('brand_list')
+#    permission_required = 'brands.add_brand'
 
 
 # class BrandDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
