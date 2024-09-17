@@ -34,8 +34,9 @@ class BrandCreateView(CreateView):
 
 
 # class BrandDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-#     model = models.Brand
-#     template_name = 'brand_detail.html'
+class BrandDetailView(DetailView):
+     model = models.Brand
+     template_name = 'brand_detail.html'
 #     permission_required = 'brands.view_brand'
 
 
