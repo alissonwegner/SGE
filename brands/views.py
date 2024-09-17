@@ -41,10 +41,11 @@ class BrandDetailView(DetailView):
 
 
 # class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-#     model = models.Brand
-#     template_name = 'brand_update.html'
-#     form_class = forms.BrandForm
-#     success_url = reverse_lazy('brand_list')
+class BrandUpdateView(UpdateView):
+     model = models.Brand
+     template_name = 'brand_update.html'
+     form_class = forms.BrandForm
+     success_url = reverse_lazy('brand_list')
 #     permission_required = 'brands.change_brand'
 
 
