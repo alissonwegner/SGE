@@ -11,7 +11,7 @@ class BrandListView(ListView):
     model = models.Brand
     template_name = 'brand_list.html'
     context_object_name = 'brands'
-    #paginate_by = 10
+    paginate_by = 5
     #permission_required = 'brands.view_brand'
 
     #colocar filtro no site
@@ -37,6 +37,7 @@ class BrandCreateView(CreateView):
 class BrandDetailView(DetailView):
      model = models.Brand
      template_name = 'brand_detail.html'
+     
 #     permission_required = 'brands.view_brand'
 
 
