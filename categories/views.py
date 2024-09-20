@@ -53,7 +53,7 @@ class CategoryUpdateView(UpdateView):
 # class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 class CategoryDeleteView(DeleteView):
      model = models.Category
-     template_name = 'caregory_delete.html'
+     template_name = 'category_delete.html'
      success_url = reverse_lazy('category_list')
 #     permission_required = 'brands.delete_brand'
 
