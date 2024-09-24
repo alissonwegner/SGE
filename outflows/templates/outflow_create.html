@@ -9,10 +9,10 @@
         <form method="post" class="form">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Salvar Saida</button>
+          <button type="submit" class="btn btn-primary">Salvar a Saida</button>
         </form>
       </div>
     </div>
-    <a href="{% url 'outflow_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a Lista de Saida</a>
+    <a href="{% url 'outflow_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a Lista de Entradas</a>
   </div>
 {% endblock %}
