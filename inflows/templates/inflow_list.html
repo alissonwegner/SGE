@@ -17,7 +17,7 @@ SGE - Entrada
     </div>
     <div class="col-md-6">
         <a href="{% url 'inflow_create' %}" class="btn btn-success float-end">
-            <i class="bi bi-plus"> Nova Saida </i>
+            <i class="bi bi-plus"> Nova Entrada </i>
         </a>
     </div>   
 </div>
@@ -35,17 +35,17 @@ SGE - Entrada
             </tr>
         </thead>
         <tbody>
-            {% for outflow in outflows %}
+            {% for intflow in intflows %}
             <tr>
               <td>
                 <a href="{% url 'inflow_detail' inflow.id %}" class="text-primary fw-semibold">
-                  {{ outflow.id }}
+                  {{ intflow.id }}
                 </a>
               </td>
-              <td>{{ outflow.product }}</td>
-              <td>{{ outflow.supplier }}</td>
-              <td>{{ outflow.quantity }}</td>
-              <td>{{ outflow.created_at }}</td>
+              <td>{{ intflow.product }}</td>
+              <td>{{ intflow.supplier }}</td>
+              <td>{{ intflow.quantity }}</td>
+              <td>{{ intflow.created_at }}</td>
               <td>
                 <a href="{% url 'inflow_detail' inflow.id %}" class="btn btn-info btn-sm">
                   <i class="bi bi-eye"></i>
