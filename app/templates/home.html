@@ -10,6 +10,7 @@ SGE - Dashboard
     {% include 'components/_product_metrics.html' %}
 
     {% include 'components/_sales_metrics.html' %}
+    
 
     <div class="row mt-4 justify-content-center">
         <div class="col-md-6 text-center">
@@ -31,12 +32,111 @@ SGE - Dashboard
               <canvas id="productByBrandChart" class="embed-responsive-item"></canvas>
             </div>
           </div>
+
+        <div class="col-md-6 text-center">
+          <h5 class="mb-3">Valor de vendas (Ultimos 7 dias)</h5>
+          <div class="mb-4"></div>
+          <div class="embed-responsive embed-responsive-1by1" style="width: 400px; display: inline-block;">
+            <canvas id="dailySalesChart" class="embed-responsive-item"></canvas>
+          </div>
         </div>
+
+      <div class="col-md-6 text-center">
+        <h5 class="mb-3">Quantidade de vendas diarias</h5>
+        <div class="mb-4"></div>
+        <div class="embed-responsive embed-responsive-1by1" style="width: 400px; display: inline-block;">
+          <canvas id="dailySalesQuantityChart" class="embed-responsive-item"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
-          document.addEventListener("DOMContentLoaded", function() {
+            var dailySalesData = JSON.parse('{{ daily_sales_data|safe }}');
+            var dailySalesQuantityData = JSON.parse('{{ daily_sales_quantity_data|safe }}');
             var productCountByCategory = JSON.parse('{{ product_count_by_category|safe }}');
             var productCountByBrand = JSON.parse('{{ product_count_by_brand|safe }}');
+
+          document.addEventListener("DOMContentLoaded", function() {
+
+
+
+            var ctxDailySales = document.getElementById('dailySalesChart').getContext('2d');
+            var dailySalesChart = new Chart(ctxDailySales, {
+              type: 'line',
+              data: {
+                labels: dailySalesData.dates,
+                datasets: [{
+                  label: 'Valor em vendas',
+                  data: dailySalesData.values,
+                  file: false,
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1,
+                  tension: 0.5
+                }]
+              },
+              options: {
+                scales: {
+                  y:{
+                    beginAtZero: true
+                  }
+                }
+                }
+              });
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            var ctxDailySales = document.getElementById('dailySalesChart').getContext('2d');
+            var dailySalesChart = new Chart(ctxDailySales, {
+              type: 'line',
+              data: {
+                labels: dailySalesData.dates,
+                datasets: [{
+                  label: 'Valor em vendas',
+                  data: dailySalesData.values,
+                  file: false,
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1,
+                  tension: 0.5
+                }]
+              },
+              options: {
+                scales: {
+                  y:{
+                    beginAtZero: true
+                  }
+                }
+                }
+              });
+
+
+
+
+
+
+
+
+
             var ctxCategory = document.getElementById('productByCategoryChart').getContext('2d');
             var productByCategoryChart = new Chart(ctxCategory, {
               type: 'pie',
@@ -73,6 +173,6 @@ SGE - Dashboard
                 }
               }
             });
-          });
+          
         </script>
       {% endblock %}
