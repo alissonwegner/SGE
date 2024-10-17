@@ -57,7 +57,7 @@ SGE - Dashboard
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             var dailySalesData = JSON.parse('{{ daily_sales_data|safe }}');
-           //  var dailySalesQuantityData = JSON.parse('{{ daily_sales_quantity_data|safe }}');
+            var dailySalesQuantityData = JSON.parse('{{ daily_sales_quantity_data|safe }}');
             var productCountByCategory = JSON.parse('{{ product_count_by_category|safe }}');
             var productCountByBrand = JSON.parse('{{ product_count_by_brand|safe }}');
 
