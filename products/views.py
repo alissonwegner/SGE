@@ -1,4 +1,6 @@
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from brands.models import Brand
 from app import metrics
@@ -8,7 +10,7 @@ from . import models, forms
 
 
 #class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = models.Product
     template_name = 'product_list.html'
     context_object_name = 'products'
@@ -46,7 +48,7 @@ class ProductListView(ListView):
 
 
 #class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
 
     model = models.Product
     template_name = 'product_create.html'
@@ -56,7 +58,7 @@ class ProductCreateView(CreateView):
 
 
 # class BrandDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
      model = models.Product
      template_name = 'product_detail.html'
      
@@ -64,7 +66,7 @@ class ProductDetailView(DetailView):
 
 
 # class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
      model = models.Product
      template_name = 'product_update.html'
      form_class = forms.ProductForm

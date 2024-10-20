@@ -2,12 +2,14 @@
 #from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
 from . import models, forms
 #, forms, serializers
 
 
 #class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
     model = models.Category
     template_name = 'category_list.html'
     context_object_name = 'categories'
@@ -24,7 +26,7 @@ class CategoryListView(ListView):
 
 
 #class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-class CategoryCreateView(CreateView):
+class CategoryCreateView(LoginRequiredMixin, CreateView):
 
     model = models.Category
     template_name = 'category_create.html'
@@ -34,7 +36,7 @@ class CategoryCreateView(CreateView):
 
 
 # class CaregoryDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-class CategoryDetailView(DetailView):
+class CategoryDetailView(LoginRequiredMixin, DetailView):
      model = models.Category
      template_name = 'category_detail.html'
      
@@ -42,7 +44,7 @@ class CategoryDetailView(DetailView):
 
 
 # class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-class CategoryUpdateView(UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
      model = models.Category
      template_name = 'category_update.html'
      form_class = forms.CategoryForm
@@ -51,7 +53,7 @@ class CategoryUpdateView(UpdateView):
 
 
 # class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
      model = models.Category
      template_name = 'category_delete.html'
      success_url = reverse_lazy('category_list')

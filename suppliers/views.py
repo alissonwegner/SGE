@@ -1,5 +1,5 @@
 #from rest_framework import generics
-#from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from . import models, forms
@@ -7,7 +7,7 @@ from . import models, forms
 
 
 #class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-class SupplierListView(ListView):
+class SupplierListView(LoginRequiredMixin, ListView):
     model = models.Supplier
     template_name = 'supplier_list.html'
     context_object_name = 'suppliers'
@@ -24,7 +24,7 @@ class SupplierListView(ListView):
 
 
 #class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-class SupplierCreateView(CreateView):
+class SupplierCreateView(LoginRequiredMixin, CreateView):
 
     model = models.Supplier
     template_name = 'supplier_create.html'
@@ -34,7 +34,7 @@ class SupplierCreateView(CreateView):
 
 
 # class BrandDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-class SupplierDetailView(DetailView):
+class SupplierDetailView(LoginRequiredMixin, DetailView):
      model = models.Supplier
      template_name = 'supplier_detail.html'
      
@@ -42,7 +42,7 @@ class SupplierDetailView(DetailView):
 
 
 # class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-class SupplierUpdateView(UpdateView):
+class SupplierUpdateView(LoginRequiredMixin, UpdateView):
      model = models.Supplier
      template_name = 'supplier_update.html'
      form_class = forms.SupplierForm
@@ -51,7 +51,7 @@ class SupplierUpdateView(UpdateView):
 
 
 # class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-class SupplierDeleteView(DeleteView):
+class SupplierDeleteView(LoginRequiredMixin, DeleteView):
      model = models.Supplier
      template_name = 'supplier_delete.html'
      success_url = reverse_lazy('supplier_list')
